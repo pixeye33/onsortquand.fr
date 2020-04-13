@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>On sort quand ?</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Bientôt.*" />
+    <meta property="og:title" content="On sort quand ?">
+    <meta property="og:site_name" content="On sort quand ?">
+    <meta property="og:url" content="http://www.onsortquand.fr">
+    <meta property="og:description" content="Bientôt.*">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:title" content="On sort quand ?" />
+    <meta name="twitter:description" content="Bientôt.*" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-weight: normal;
+        }
+
+        li {
+            display: inline-block;
+            font-size: 1.5em;
+            list-style-type: none;
+            padding: 1em;
+            text-transform: uppercase;
+        }
+
+        li span {
+            display: block;
+            font-size: 4.5rem;
+        }
+
+        /* general styling */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background-color: #ffd54f;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        }
+
+        .container {
+            color: #333;
+            margin: 0 auto;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        #auteur {
+            position: fixed; bottom: 10px; left: 10px;
+        }
+        
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #2C8EB0;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="container">
+        <h1>ON SORT DANS</h1>
+        <ul>
+            <li><span id="days">99</span>Jours</li>
+            <li><span id="hours">23</span>Heures</li>
+            <li><span id="minutes">59</span>Minutes</li>
+            <li><span id="seconds">59</span>Secondes</li>
+        </ul>
+        <p>Normalement, et sauf si t'es vieux.</p>
+    </div>
+
+    <a id="auteur" href="http://twitter.com/pixeye33" title="Page Twitter de @pixeye33" target="_blank">Twitter</a>
+
+    <script>
+        const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+        let countDown = new Date('May 11, 2020 00:00:00').getTime(),
+        x = setInterval(function() {    
+
+        let now = new Date().getTime(),
+            distance = countDown - now;
+
+        document.getElementById('days').innerText = Math.floor(distance / (day)),
+        document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
+        document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+        document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+
+        //do something later when date is reached
+        //if (distance < 0) {
+        //  clearInterval(x);
+        //  'IT'S MY BIRTHDAY!;
+        //}
+
+        }, second)
+    </script>
+</body>
+</html>
