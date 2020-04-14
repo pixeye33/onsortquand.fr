@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <title>On sort quand ?</title>
     <meta charset="utf-8" />
@@ -106,24 +106,28 @@
         hour = minute * 60,
         day = hour * 24;
 
-        let countDown = new Date('May 11, 2020 00:00:00').getTime(),
-        x = setInterval(function() {    
+        function countDown() {
 
         let now = new Date().getTime(),
-            distance = countDown - now;
+            distance = targetDate - now;
 
-        document.getElementById('days').innerText = Math.floor(distance / (day)),
-        document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
-        document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
-        document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+            document.getElementById('days').innerText = Math.floor(distance / (day)),
+            document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
+            document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+            document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
 
-        //do something later when date is reached
-        //if (distance < 0) {
-        //  clearInterval(x);
-        //  'IT'S MY BIRTHDAY!;
-        //}
+            //do something later when date is reached
+            //if (distance < 0) {
+            //  clearInterval(x);
+            //  'IT'S MY BIRTHDAY!;
+            //}
 
-        }, second)
+        }
+
+        let targetDate = new Date('May 11, 2020 00:00:00').getTime(),
+        x = setInterval(countDown, second);
+        countDown();
+        
     </script>
 </body>
 </html>
