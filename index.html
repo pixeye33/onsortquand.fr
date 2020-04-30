@@ -341,22 +341,6 @@
                 document.querySelector("path[data-numerodepartement='"+zones[i][j]+"']").setAttribute("data-zones", i);
             }
         }
-
-        document.querySelectorAll('path[data-zones]').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                document.getElementById("timer0").style.display = "none";
-                document.getElementById("timer1").style.display = "none";
-                document.getElementById("timer2").style.display = "none";
-                document.getElementById("timer"+event.target.getAttribute('data-zones')).style.display = "block";
-            });
-        });
-
-
-        /*document.querySelectorAll('path[data-numerodepartement]').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                document.title = event.target.getAttribute('data-numerodepartement');
-            });
-        });*/
         
     </script>
     
