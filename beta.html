@@ -50,11 +50,11 @@
 
         body {
             align-items: center;
-            background-color: #ffd54f;
+            background-color: #ffd54fa3;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             height: 100vh;
-            min-height: 700px;
-            min-width: 1100px;
+            min-height: 800px;
+            min-width: 1120px;
         }
 
         .container {
@@ -96,35 +96,47 @@
         path {
             stroke: #666666;
             stroke-width: 0.5px;
-            fill: #86aae0;
+            fill: #aaaaaa;
         }
 
-        .region-75, .region-06 {
-            fill: #051440;
+        path[data-zones="0"] {
+            fill: #28D762;
         }
 
-        .region-32 {
-            fill: #FFFFFF;
+        path[data-zones="1"] {
+            fill: #FFC100;
         }
 
-        .region-11 {
-            fill: #EC1920;
+        path[data-zones="2"] {
+            fill: #FA0107;
         }
 
         #timer0 {
-            background-color: #051440;
-            color: #FFFFFF;
+            background-color: #000000;
+            color: #28D762;
+            border: 2px solid #28D762;
+            border-radius: 20px;
         }
 
-        #timer1 {
-            background-color: #FFFFFF;
-            color: #000000;
+        /*#timer1 {
+            background-color: #000000;
+            color: #FFC100;
+            border: 2px solid #FFC100;
+            border-radius: 20px;
         }
 
         #timer2 {
-            background-color: #EC1920;
-            color: #FFFFFF;
-        }        
+            background-color: #000000;
+            color: #FA0107;
+            border: 2px solid #FA0107;
+            border-radius: 20px;
+        }*/
+        /*
+        #FA0107
+        #FFC100
+        #FFFE00
+        #28D762
+        */
     </style>
 </head>
 <body>
@@ -138,19 +150,8 @@
                 <li><span class="minutes">59</span>Minutes</li>
                 <li><span class="seconds">59</span>Secondes</li>
             </ul>
-            <ul id="timer1">
-                <li><span class="days">99</span>Jours</li>
-                <li><span class="hours">23</span>Heures</li>
-                <li><span class="minutes">59</span>Minutes</li>
-                <li><span class="seconds">59</span>Secondes</li>
-            </ul>
-            <ul id="timer2">
-                <li><span class="days">99</span>Jours</li>
-                <li><span class="hours">23</span>Heures</li>
-                <li><span class="minutes">59</span>Minutes</li>
-                <li><span class="seconds">59</span>Secondes</li>
-            </ul>
         </div>
+        <p>(sous réserves de modifications ou d'erreurs)</p>
     </div>
     <div id="carte">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 667 578" xml:space="preserve">
@@ -320,9 +321,40 @@
 
         }
 
-        var targetDates = [new Date('May 11, 2020 00:00:00').getTime(), new Date('May 18, 2020 00:00:00').getTime(), new Date('May 25, 2020 00:00:00').getTime()];
+        var targetDates = [new Date('May 11, 2020 00:00:00').getTime()];
         x = setInterval(countDown, second);
         countDown();
+
+        var zones = [
+            ["29","22","35","56","49","85","79","17","16","86","87","23","19","33","47","40","64","65","31","09","11","66","34","30","48","12","2A","971","972","973","974","50","76","27","61","82"],
+            ["24","32","81","15","63","03","42","69","01","74","73","05","06","83","13","04","38","26","07","43","07","84","36","37","41","44","53","72","14","45","28"],
+            ["976","2B","46","18","58","71","39","25","89","21","70","90","68","67","88","54","57","08","55","52","59","02","51","77","10","60","62","80","95","78","91","75","93","94","92"]
+        ];
+
+        arrayLength = zones.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var innerArrayLength = zones[i].length;
+            for (var j = 0; j < innerArrayLength; j++) {
+                console.log(zones[i][j]);
+                document.querySelector("path[data-numerodepartement='"+zones[i][j]+"']").setAttribute("data-zones", i);
+            }
+        }
+
+        document.querySelectorAll('path[data-zones]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.getElementById("timer0").style.display = "none";
+                document.getElementById("timer1").style.display = "none";
+                document.getElementById("timer2").style.display = "none";
+                document.getElementById("timer"+event.target.getAttribute('data-zones')).style.display = "block";
+            });
+        });
+
+
+        /*document.querySelectorAll('path[data-numerodepartement]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.title = event.target.getAttribute('data-numerodepartement');
+            });
+        });*/
         
     </script>
     
