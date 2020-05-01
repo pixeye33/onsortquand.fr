@@ -147,7 +147,7 @@
             </ul>
         </div>
         <p>(sous réserves de modifications ou d'erreurs)</p>
-        <p>source : <a href="https://www.francetvinfo.fr/sante/maladie/coronavirus/coronavirus-votre-departement-est-il-rouge-orange-ou-vert-decouvrez-la-version-provisoire-de-la-carte-de-france-du-deconfinement_3942205.html" target="_blank">francetvinfo.fr</a></p>
+        <p>source : <a href="https://www.lemonde.fr/planete/live/2020/05/01/un-1er-mai-symbolique-sans-manifestation-suivez-la-46e-journee-de-confinement-en-direct_6038362_3244.html?highlight=1188668363" target="_blank">lemonde.fr</a> (01/05/2020)</p>
     </div>
     <div id="carte">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 667 578" xml:space="preserve">
@@ -323,9 +323,9 @@
         countDown();
 
         var zones = [
-            ["29","22","35","56","49","85","79","17","16","86","87","23","19","33","47","40","64","65","31","09","11","66","34","30","48","12","2A","971","972","973","974","50","76","27","61","82"],
-            ["24","32","81","15","63","03","42","69","01","74","73","05","06","83","13","04","38","26","07","43","07","84","36","37","41","44","53","72","14","45","28"],
-            ["976","2B","46","18","58","71","39","25","89","21","70","90","68","67","88","54","57","08","55","52","59","02","51","77","10","60","62","80","95","78","91","75","93","94","92"]
+            ["24","2B","29","22","35","81","46","56","49","85","79","17","16","86","87","23","19","33","47","40","64","65","31","09","11","66","14","34","30","48","12","2A","971","972","973","974","50","76","27","61","82"],
+            ["32","15","63","03","42","69","01","74","73","05","06","83","13","04","38","26","07","43","07","84","36","37","41","44","53","72","45","28"],
+            ["976","18","58","71","39","25","89","21","70","90","68","67","88","54","57","08","55","52","59","02","51","77","10","60","62","80","95","78","91","75","93","94","92"]
         ];
 
         arrayLength = zones.length;
@@ -336,6 +336,12 @@
                 document.querySelector("path[data-numerodepartement='"+zones[i][j]+"']").setAttribute("data-zones", i);
             }
         }
+
+        document.querySelectorAll('path[data-numerodepartement]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.title = event.target.getAttribute('data-numerodepartement');
+            });
+        });
         
     </script>
     
